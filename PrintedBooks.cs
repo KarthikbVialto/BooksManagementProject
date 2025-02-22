@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 public class PrintedBooks:Books{
-    
+    //properties of printed books
     public string Title{ get; set; }
     public string Author{ get; set; }
 
