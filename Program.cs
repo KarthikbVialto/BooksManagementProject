@@ -6,6 +6,7 @@ using Spectre.Console;
 public class Program{
 
     public static void RenderLayout(){
+        //top panel for book management menu
          var topPanel = new Panel(
             new Markup("[bold yellow]Book Management Menu[/]\n" +
                        "[blue]1. Add a Book[/]\n" +
@@ -15,19 +16,19 @@ public class Program{
                        "[blue]5. Exit[/]")
         ).Border(BoxBorder.Rounded).Expand();
 
-        // Bottom Section: User Input & Display
+        // Bottom panel for user input
         var bottomPanel = new Panel(
             new Markup("[bold green]User Input & Books Table[/]\n" +
                        "Follow Instructions to interact with system.")
         ).Border(BoxBorder.Double).Expand();
 
-        // Grid Layout (2 Rows)
+        
         var grid = new Grid();
         grid.AddColumn(new GridColumn().NoWrap());
         grid.AddRow(topPanel);
         grid.AddRow(bottomPanel);
 
-        // Render Grid
+       
         AnsiConsole.Write(grid);
     }
     public static void Main(string[] args){
@@ -36,7 +37,7 @@ public class Program{
         bool IsExit = true;
         while(IsExit){
             try{
-                AnsiConsole.Clear(); // Clear screen on each iteration
+                AnsiConsole.Clear(); 
                 RenderLayout();
                 bool printedBook = false;
                 bool ebook = false;

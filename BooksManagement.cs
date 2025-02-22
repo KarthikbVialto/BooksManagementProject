@@ -9,6 +9,7 @@ public class BooksManagement{
     }
 
     public void DisplayInfo(bool printedBook,bool ebook,bool allbooks){
+        #region table definition
         var table = new Table();
         table.AddColumn("Type");
         table.AddColumn("Title");
@@ -16,16 +17,20 @@ public class BooksManagement{
         table.AddColumn("Desrciption");
         table.AddColumn("No of pages");
         table.AddColumn("Size in Mb");
+        #endregion
+        
         if(printedBook){
             foreach(Books book in books){
                 string[] data;
                 if(book is PrintedBooks printedBooks){
                     data = book.DisplayInfo();
                     table.AddRow(data[0],data[1],data[2],data[3],data[4],data[5]);
-                    table.AddEmptyRow();
+                    table.AddEmptyRow();//row seperator
                 }
             }
             AnsiConsole.Write(table);
+            //press enter to clear console and select next option
+            Console.WriteLine("Press enter to clear console and continue interaction!");
             Console.ReadLine();
         }
         else if(ebook){
@@ -38,6 +43,8 @@ public class BooksManagement{
                 }
             }
             AnsiConsole.Write(table);
+            //press enter to clear console and select next option
+            Console.WriteLine("Press enter to clear console and continue interaction!");
             Console.ReadLine();
 
         }
@@ -49,6 +56,8 @@ public class BooksManagement{
                 table.AddEmptyRow();
             }
             AnsiConsole.Write(table);
+            //press enter to clear console and select next option
+            Console.WriteLine("Press enter to clear console and continue interaction!");
             Console.ReadLine();
 
         }
