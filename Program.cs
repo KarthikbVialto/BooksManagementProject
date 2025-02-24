@@ -20,7 +20,7 @@ public class Program{
         var bottomPanel = new Panel(
             new Markup("[bold green]User Input & Books Table[/]\n" +
                        "Follow Instructions to interact with system.")
-        ).Border(BoxBorder.Double).Expand();
+        ).Border(BoxBorder.Rounded).Expand();
 
         
         var grid = new Grid();
@@ -50,9 +50,11 @@ public class Program{
                     #region Add book case
                         case 1:
                         AnsiConsole.Clear();
-                        AnsiConsole.WriteLine("Please select an option");
-                        AnsiConsole.WriteLine("1. PrintedBooks");
-                        AnsiConsole.WriteLine("2. Ebooks");
+                        var table = new Table();
+                        table.AddColumn("Please select an option");
+                        table.AddColumn("1. PrintedBooks");
+                        table.AddColumn("2. Ebooks");
+                        AnsiConsole.Write(table);
                         int BookType = int.Parse(AnsiConsole.Ask<string>("Types of Books:"));
                         if(BookType<1|| BookType>2)throw new InvalidDataException();
                        
