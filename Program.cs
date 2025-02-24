@@ -52,8 +52,8 @@ public class Program{
                         AnsiConsole.Clear();
                         var table = new Table();
                         table.AddColumn("Please select an option");
-                        table.AddColumn("1. PrintedBooks");
-                        table.AddColumn("2. Ebooks");
+                        table.AddRow("1. PrintedBooks");
+                        table.AddRow("2. Ebooks");
                         AnsiConsole.Write(table);
                         int BookType = int.Parse(AnsiConsole.Ask<string>("Types of Books:"));
                         if(BookType<1|| BookType>2)throw new InvalidDataException();
@@ -66,11 +66,11 @@ public class Program{
                     
                         if (BookType == 1){
                             int NoOfPages = int.Parse(AnsiConsole.Ask<string>("Enter No of pages in Book:"));
-                            booksManagement.AddBook(new PrintedBooks(Title,Author,Description,NoOfPages));
+                            booksManagement.AddBook(new PrintedBooks("Printed Book",Title,Author,Description,NoOfPages));
                         }
                         else{
                             int  sizeMb = int.Parse(AnsiConsole.Ask<string>("Enter size of  Book in Mb:"));
-                            booksManagement.AddBook(new Ebooks(Title,Author,Description,sizeMb));
+                            booksManagement.AddBook(new Ebooks("Ebook",Title,Author,Description,sizeMb));
                         }
                         break;
                     #endregion

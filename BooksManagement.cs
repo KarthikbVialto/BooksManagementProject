@@ -21,11 +21,17 @@ public class BooksManagement{
         
         if(printedBook){
             foreach(Books book in books){
-                string[] data;
+                
                 if(book is PrintedBooks printedBooks){
-                    data = book.DisplayInfo();
-                    table.AddRow(data[0],data[1],data[2],data[3],data[4],data[5]);
-                    table.AddEmptyRow();//row seperator
+                    string noOfPages = book.DisplayUniqueInfo();
+                    table.AddRow(
+                        book.TypeOfBook,
+                        book.Title,
+                        book.Author,
+                        book.Description,
+                        noOfPages,
+                        "NA"
+                    );
                 }
             }
             AnsiConsole.Write(table);
@@ -35,11 +41,17 @@ public class BooksManagement{
         }
         else if(ebook){
             foreach(Books book in books){
-                string[] data;
+                
                 if(book is Ebooks ebooks){
-                    data = book.DisplayInfo();
-                    table.AddRow(data[0],data[1],data[2],data[3],data[4],data[5]);
-                    table.AddEmptyRow();
+                    string sizemb = book.DisplayUniqueInfo();
+                    table.AddRow(
+                        book.TypeOfBook,
+                        book.Title,
+                        book.Author,
+                        book.Description,
+                        "NA",//table field no of pages not applicable to ebook
+                        sizemb
+                    );
                 }
             }
             AnsiConsole.Write(table);
@@ -50,10 +62,33 @@ public class BooksManagement{
         }
         else{
             foreach(Books book in books){
-                string[] data;
-                data =book.DisplayInfo();
-                table.AddRow(data[0],data[1],data[2],data[3],data[4],data[5]);
+                string BookUniqueData;
+                if (book is Ebooks ebooks){
+                    BookUniqueData = book.DisplayUniqueInfo();
+                    table.AddRow(
+                    book.TypeOfBook,
+                    book.Title,
+                    book.Author,
+                    book.Description,
+                    "NA",
+                    BookUniqueData
+                    );
+                    table.AddEmptyRow();
+
+                }
+                else{
+                    BookUniqueData = book.DisplayUniqueInfo();
+                    table.AddRow(
+                    book.TypeOfBook,
+                    book.Title,
+                    book.Author,
+                    book.Description,
+                    BookUniqueData,
+                    "NA"
+                );
                 table.AddEmptyRow();
+                }
+                
             }
             AnsiConsole.Write(table);
             //press enter to clear console and select next option
